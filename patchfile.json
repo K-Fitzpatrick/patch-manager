@@ -1,0 +1,15 @@
+{
+    "baseRom": {
+        "location": "./super-metroid.smc"
+    },
+    "patches": [
+        {
+            "name": "Ancient Chozo",
+            "url": "http://www.metroidconstruction.com/download.php?id=365&f=http%3A%2F%2Fmetroidconstruction.com%2F%2Ffiles%2Fhacks%2F365%2F5ae26987b81a9_ForumAttachment.ips"
+        },
+        {
+            "name": "bomb patch",
+            "location": "./patches/some-patch.ips"
+        }
+    ]
+}
