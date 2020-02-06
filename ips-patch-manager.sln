@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ips-patch-manager", "ips-patch-manager.csproj", "{4A4D2F94-E543-4351-B70E-C22AB70BA38A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B997EAB5-FD05-4B98-9663-C9FE2D822150} = {B997EAB5-FD05-4B98-9663-C9FE2D822150}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibIPS.NET", "LibIPS.NET\LibIPS.NET\LibIPS.NET.csproj", "{B997EAB5-FD05-4B98-9663-C9FE2D822150}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
