@@ -10,20 +10,40 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ips-patch-manager", "ips-pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibIPS.NET", "LibIPS.NET\LibIPS.NET\LibIPS.NET.csproj", "{B997EAB5-FD05-4B98-9663-C9FE2D822150}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cskas", "xkas-2011\cskas\cskas.csproj", "{E93A5E4C-2FAB-4395-BB15-70D7C99EF449}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Debug|x86.Build.0 = Debug|Any CPU
 		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Release|x86.ActiveCfg = Release|Any CPU
+		{4A4D2F94-E543-4351-B70E-C22AB70BA38A}.Release|x86.Build.0 = Release|Any CPU
 		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Debug|x86.Build.0 = Debug|Any CPU
 		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Release|x86.ActiveCfg = Release|Any CPU
+		{B997EAB5-FD05-4B98-9663-C9FE2D822150}.Release|x86.Build.0 = Release|Any CPU
+		{E93A5E4C-2FAB-4395-BB15-70D7C99EF449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E93A5E4C-2FAB-4395-BB15-70D7C99EF449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E93A5E4C-2FAB-4395-BB15-70D7C99EF449}.Debug|x86.ActiveCfg = Debug|x86
+		{E93A5E4C-2FAB-4395-BB15-70D7C99EF449}.Debug|x86.Build.0 = Debug|x86
+		{E93A5E4C-2FAB-4395-BB15-70D7C99EF449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E93A5E4C-2FAB-4395-BB15-70D7C99EF449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E93A5E4C-2FAB-4395-BB15-70D7C99EF449}.Release|x86.ActiveCfg = Release|x86
+		{E93A5E4C-2FAB-4395-BB15-70D7C99EF449}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
