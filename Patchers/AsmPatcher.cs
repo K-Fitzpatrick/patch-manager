@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ips_patch_manager.Patchers
+﻿namespace ips_patch_manager.Patchers
 {
-    class AsmPatcher
+    public class AsmPatcher
     {
+        public AsmPatcher(string patchFile)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

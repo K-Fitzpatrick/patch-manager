@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace ips_patch_manager.Patchers
 {
     public static class PatcherFactory
     {
-        public IPatcher CreatePatcher()
+        public static IPatcher CreatePatcher(string patchPath)
         {
+            if(Path.GetExtension(patchPath).Equals(".ips", StringComparison.OrdinalIgnoreCase))
+            {
+                return new IpsPatcher(patchPath);
+            }
 
+            throw new NotImplementedException($"Unhandled file type on path '{patchPath}'.");
         }
     }
 }

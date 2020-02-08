@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace ips_patch_manager.Patchers
 {
-    class IPatcher
+    public interface IPatcher
     {
+        void Patch(Stream targetStream);
     }
 }

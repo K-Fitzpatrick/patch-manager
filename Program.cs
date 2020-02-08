@@ -1,4 +1,5 @@
 ﻿using CodeIsle.LibIpsNet;
+using ips_patch_manager.Patchers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,33 +29,40 @@ namespace ips_patch_manager
     class Program
     {
         static void Main(string[] args)
-        { 
+        {
             string text = File.ReadAllText(@"../../patchfile.json");
             var serializer = new JavaScriptSerializer();
             PatchFile patchFile = serializer.Deserialize<PatchFile>(text);
 
             List<string> patchPaths = LockAllPatches(patchFile);
 
-            if(patchPaths
-                .Any(path => !Path.GetExtension(path).Equals(".ips", StringComparison.OrdinalIgnoreCase)
-                                && !Path.GetExtension(path).Equals(".asm", StringComparison.OrdinalIgnoreCase)))
-            {
-                throw new Exception("Unknown file type. We only handle IPS and ASM.");
-            }
-
+            // Until I can make our assembler (xkas) take a stream (or rewrite my code to write to a file),
+            //  I'll need to validate on this condition.
             var ipsPatchPaths = patchPaths
                 .TakeWhile(path => Path.GetExtension(path).Equals(".ips", StringComparison.OrdinalIgnoreCase));
             var asmPatchPaths = patchPaths
                 .SkipWhile(path => Path.GetExtension(path).Equals(".ips", StringComparison.OrdinalIgnoreCase))
                 .TakeWhile(path => Path.GetExtension(path).Equals(".asm", StringComparison.OrdinalIgnoreCase));
-
             if(patchPaths.Except(ipsPatchPaths.Concat(asmPatchPaths)).Any())
             {
                 throw new Exception("Patches MUST contains IPS, then ASM. Nothing out of order is accepted currently.");
             }
 
-            Patch(ipsPatchPaths.ToList(), patchFile.baseRomLocation, patchFile.outputRomLocation);
-            Assemble(asmPatchPaths.ToList(), patchFile.baseRomLocation, patchFile.outputRomLocation);
+            var patchers = patchPaths.Select(path => PatcherFactory.CreatePatcher(path));
+            using(MemoryStream targetStream = new MemoryStream())
+            {
+                using(FileStream sourceStream = File.Open(patchFile.baseRomLocation, FileMode.Open, FileAccess.Read))
+                {
+                    sourceStream.CopyTo(targetStream);
+                }
+
+                foreach(var patcher in patchers)
+                {
+                    patcher.Patch(targetStream);
+                }
+
+                File.WriteAllBytes(patchFile.outputRomLocation, targetStream.ToArray());
+            }
         }
 
         static List<string> LockAllPatches(PatchFile patchFile)
