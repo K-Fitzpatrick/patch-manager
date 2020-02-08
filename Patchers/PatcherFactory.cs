@@ -11,6 +11,10 @@ namespace ips_patch_manager.Patchers
             {
                 return new IpsPatcher(patchPath);
             }
+            else if(Path.GetExtension(patchPath).Equals(".asm", StringComparison.OrdinalIgnoreCase))
+            {
+                return new AsmPatcher(patchPath);
+            }
 
             throw new NotImplementedException($"Unhandled file type on path '{patchPath}'.");
         }

@@ -1,10 +1,40 @@
-﻿namespace ips_patch_manager.Patchers
+﻿using System.IO;
+
+namespace ips_patch_manager.Patchers
 {
-    public class AsmPatcher
+    public class AsmPatcher : IPatcher
     {
-        public AsmPatcher(string patchFile)
+        private string PatchPath;
+
+        public AsmPatcher(string patchPath)
         {
-            throw new System.NotImplementedException();
+            PatchPath = patchPath;
+        }
+
+        public void Patch(Stream targetStream)
+        {
+            // This is all a big workaround for the fact that xkas has to take a file pointer
+
+            string tempFilePath = Path.GetTempFileName();
+            using(FileStream fileStream = new FileStream(tempFilePath, FileMode.Open, FileAccess.Write))
+            {
+                targetStream.Seek(0, SeekOrigin.Begin);
+                targetStream.CopyTo(fileStream);
+            }
+
+            string tempOutputLocation = Path.GetTempFileName();
+
+            xkas.cskas.Assemble(PatchPath, tempFilePath, tempOutputLocation, true);
+
+            using(FileStream outputStream = new FileStream(tempOutputLocation, FileMode.Open, FileAccess.Read))
+            {
+                targetStream.Seek(0, SeekOrigin.Begin);
+                outputStream.CopyTo(targetStream);
+                targetStream.SetLength(outputStream.Length);
+            }
+
+            File.Delete(tempFilePath);
+            File.Delete(tempOutputLocation);
         }
     }
 }
