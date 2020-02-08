@@ -1,6 +1,4 @@
-﻿using CodeIsle.LibIpsNet;
-using ips_patch_manager.Patchers;
-using System;
+﻿using ips_patch_manager.Patchers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,18 +33,6 @@ namespace ips_patch_manager
             PatchFile patchFile = serializer.Deserialize<PatchFile>(text);
 
             List<string> patchPaths = LockAllPatches(patchFile);
-
-            // Until I can make our assembler (xkas) take a stream (or rewrite my code to write to a file),
-            //  I'll need to validate on this condition.
-            var ipsPatchPaths = patchPaths
-                .TakeWhile(path => Path.GetExtension(path).Equals(".ips", StringComparison.OrdinalIgnoreCase));
-            var asmPatchPaths = patchPaths
-                .SkipWhile(path => Path.GetExtension(path).Equals(".ips", StringComparison.OrdinalIgnoreCase))
-                .TakeWhile(path => Path.GetExtension(path).Equals(".asm", StringComparison.OrdinalIgnoreCase));
-            if(patchPaths.Except(ipsPatchPaths.Concat(asmPatchPaths)).Any())
-            {
-                throw new Exception("Patches MUST contains IPS, then ASM. Nothing out of order is accepted currently.");
-            }
 
             var patchers = patchPaths.Select(path => PatcherFactory.CreatePatcher(path));
             using(MemoryStream targetStream = new MemoryStream())
@@ -148,40 +134,6 @@ namespace ips_patch_manager
                 throw;
             }
             return patchPaths;
-        }
-
-        static void Patch(List<string> ipsPatchPaths, string baseRomLocation, string outputRomLocation)
-        {
-            Patcher patcher = new Patcher();
-            using(MemoryStream targetStream = new MemoryStream())
-            {
-                using(FileStream sourceStream = File.Open(baseRomLocation, FileMode.Open, FileAccess.Read))
-                {
-                    sourceStream.CopyTo(targetStream);
-                }
-
-                // empty stream, so targetStream just keeps being reused over and over again
-                using(MemoryStream emptyStream = new MemoryStream())
-                {
-                    foreach(string patchPath in ipsPatchPaths)
-                    {
-                        using(FileStream patchStream = File.Open(patchPath, FileMode.Open, FileAccess.Read))
-                        {
-                            patcher.Patch(patchStream, emptyStream, targetStream);
-                        }
-                    }
-                }
-
-                File.WriteAllBytes(outputRomLocation, targetStream.ToArray());
-            }
-        }
-
-        static void Assemble(List<string> asmPatchPaths, string baseRomLocation, string outputRomLocation)
-        {
-            foreach(string patchPath in asmPatchPaths)
-            {
-                xkas.cskas.Assemble(patchPath, baseRomLocation, outputRomLocation, true);
-            }
         }
     }
 }
