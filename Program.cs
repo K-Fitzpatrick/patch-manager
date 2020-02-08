@@ -35,20 +35,6 @@ namespace ips_patch_manager
             List<string> patchPaths = LockAllPatches(patchFile);
 
             var patchers = patchPaths.Select(path => PatcherFactory.CreatePatcher(path));
-            using(MemoryStream targetStream = new MemoryStream())
-            {
-                using(FileStream sourceStream = File.Open(patchFile.baseRomLocation, FileMode.Open, FileAccess.Read))
-                {
-                    sourceStream.CopyTo(targetStream);
-                }
-
-                foreach(var patcher in patchers)
-                {
-                    patcher.Patch(targetStream);
-                }
-
-                File.WriteAllBytes(patchFile.outputRomLocation, targetStream.ToArray());
-            }
         }
 
         static List<string> LockAllPatches(PatchFile patchFile)
@@ -134,6 +120,24 @@ namespace ips_patch_manager
                 throw;
             }
             return patchPaths;
+        }
+
+        static void Patch(List<IPatcher> patchers, string baseRomLocation, string outputRomLocation)
+        {
+            using(MemoryStream targetStream = new MemoryStream())
+            {
+                using(FileStream sourceStream = File.Open(baseRomLocation, FileMode.Open, FileAccess.Read))
+                {
+                    sourceStream.CopyTo(targetStream);
+                }
+
+                foreach(var patcher in patchers)
+                {
+                    patcher.Patch(targetStream);
+                }
+
+                File.WriteAllBytes(outputRomLocation, targetStream.ToArray());
+            }
         }
     }
 }
