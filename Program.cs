@@ -1,5 +1,4 @@
-﻿using CodeIsle.LibIpsNet;
-using System;
+﻿using ips_patch_manager.Patchers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,33 +27,14 @@ namespace ips_patch_manager
     class Program
     {
         static void Main(string[] args)
-        { 
+        {
             string text = File.ReadAllText(@"../../patchfile.json");
             var serializer = new JavaScriptSerializer();
             PatchFile patchFile = serializer.Deserialize<PatchFile>(text);
 
             List<string> patchPaths = LockAllPatches(patchFile);
 
-            if(patchPaths
-                .Any(path => !Path.GetExtension(path).Equals(".ips", StringComparison.OrdinalIgnoreCase)
-                                && !Path.GetExtension(path).Equals(".asm", StringComparison.OrdinalIgnoreCase)))
-            {
-                throw new Exception("Unknown file type. We only handle IPS and ASM.");
-            }
-
-            var ipsPatchPaths = patchPaths
-                .TakeWhile(path => Path.GetExtension(path).Equals(".ips", StringComparison.OrdinalIgnoreCase));
-            var asmPatchPaths = patchPaths
-                .SkipWhile(path => Path.GetExtension(path).Equals(".ips", StringComparison.OrdinalIgnoreCase))
-                .TakeWhile(path => Path.GetExtension(path).Equals(".asm", StringComparison.OrdinalIgnoreCase));
-
-            if(patchPaths.Except(ipsPatchPaths.Concat(asmPatchPaths)).Any())
-            {
-                throw new Exception("Patches MUST contains IPS, then ASM. Nothing out of order is accepted currently.");
-            }
-
-            Patch(ipsPatchPaths.ToList(), patchFile.baseRomLocation, patchFile.outputRomLocation);
-            Assemble(asmPatchPaths.ToList(), patchFile.baseRomLocation, patchFile.outputRomLocation);
+            var patchers = patchPaths.Select(path => PatcherFactory.CreatePatcher(path));
         }
 
         static List<string> LockAllPatches(PatchFile patchFile)
@@ -142,9 +122,8 @@ namespace ips_patch_manager
             return patchPaths;
         }
 
-        static void Patch(List<string> ipsPatchPaths, string baseRomLocation, string outputRomLocation)
+        static void Patch(List<IPatcher> patchers, string baseRomLocation, string outputRomLocation)
         {
-            Patcher patcher = new Patcher();
             using(MemoryStream targetStream = new MemoryStream())
             {
                 using(FileStream sourceStream = File.Open(baseRomLocation, FileMode.Open, FileAccess.Read))
@@ -152,27 +131,12 @@ namespace ips_patch_manager
                     sourceStream.CopyTo(targetStream);
                 }
 
-                // empty stream, so targetStream just keeps being reused over and over again
-                using(MemoryStream emptyStream = new MemoryStream())
+                foreach(var patcher in patchers)
                 {
-                    foreach(string patchPath in ipsPatchPaths)
-                    {
-                        using(FileStream patchStream = File.Open(patchPath, FileMode.Open, FileAccess.Read))
-                        {
-                            patcher.Patch(patchStream, emptyStream, targetStream);
-                        }
-                    }
+                    patcher.Patch(targetStream);
                 }
 
                 File.WriteAllBytes(outputRomLocation, targetStream.ToArray());
-            }
-        }
-
-        static void Assemble(List<string> asmPatchPaths, string baseRomLocation, string outputRomLocation)
-        {
-            foreach(string patchPath in asmPatchPaths)
-            {
-                xkas.cskas.Assemble(patchPath, baseRomLocation, outputRomLocation, true);
             }
         }
     }
