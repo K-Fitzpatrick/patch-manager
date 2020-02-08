@@ -47,7 +47,6 @@
     <Compile Include="Patchers\IPatcher.cs" />
     <Compile Include="Patchers\IpsPatcher.cs" />
     <Compile Include="Patchers\PatcherFactory.cs" />
-    <Compile Include="Patchers\ZipPatcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
