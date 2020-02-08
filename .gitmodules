@@ -1,3 +1,6 @@
 [submodule "LibIPS.NET"]
 	path = LibIPS.NET
 	url = https://github.com/K-Fitzpatrick/LibIPS.NET
+[submodule "xkas-2011"]
+	path = xkas-2011
+	url = https://github.com/K-Fitzpatrick/xkas-2011

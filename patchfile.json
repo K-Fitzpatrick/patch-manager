@@ -23,6 +23,11 @@
         {
             "name": "New Beams",
             "url": "http://old.metroidconstruction.com/IPS/GrimeBeamGFX.IPS"
+        },
+        {
+            "name": "Skipping Ceres",
+            "url": "http://old.metroidconstruction.com/ASM/BlackFalconSkippingCeresV2.2.ASM",
+            "filetype": "asm"
         }
     ]
 }
