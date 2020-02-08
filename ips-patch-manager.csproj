@@ -52,5 +52,11 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="LibIPS.NET\LibIPS.NET\LibIPS.NET.csproj">
+      <Project>{b997eab5-fd05-4b98-9663-c9fe2d822150}</Project>
+      <Name>LibIPS.NET</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

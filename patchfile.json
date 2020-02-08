@@ -1,15 +1,28 @@
 {
-    "baseRom": {
-        "location": "./super-metroid.smc"
-    },
+    "baseRomLocation": "../../patches/Super_Metroid_Unheadered.smc",
+    "outputRomLocation": "../../patches/output-file.smc",
+    "patchfileLockDirectory": "../../patches.lock",
     "patches": [
         {
-            "name": "Ancient Chozo",
-            "url": "http://www.metroidconstruction.com/download.php?id=365&f=http%3A%2F%2Fmetroidconstruction.com%2F%2Ffiles%2Fhacks%2F365%2F5ae26987b81a9_ForumAttachment.ips"
+            "name": "change-1",
+            "location": "../../patches/1-change.ips"
         },
         {
-            "name": "bomb patch",
-            "location": "./patches/some-patch.ips"
+            "name": "change-2",
+            "location": "../../patches/2-change.ips"
+        },
+        {
+            "name": "change-3",
+            "location": "../../patches/3-change.ips"
+        },
+        {
+            "name": "New Beam Items",
+            "url": "http://old.metroidconstruction.com/IPS/GrimeBeamItems.IPS",
+            "update": false
+        },
+        {
+            "name": "New Beams",
+            "url": "http://old.metroidconstruction.com/IPS/GrimeBeamGFX.IPS"
         }
     ]
 }

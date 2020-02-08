@@ -1,0 +1,3 @@
+[submodule "LibIPS.NET"]
+	path = LibIPS.NET
+	url = https://github.com/K-Fitzpatrick/LibIPS.NET
