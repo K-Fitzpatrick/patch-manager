@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ips-patch-manager", "ips-patch-manager.csproj", "{4A4D2F94-E543-4351-B70E-C22AB70BA38A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B997EAB5-FD05-4B98-9663-C9FE2D822150} = {B997EAB5-FD05-4B98-9663-C9FE2D822150}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibIPS.NET", "LibIPS.NET\LibIPS.NET\LibIPS.NET.csproj", "{B997EAB5-FD05-4B98-9663-C9FE2D822150}"
 EndProject
@@ -16,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cskas", "xkas-2011\cskas\cs
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xkas-dll", "xkas-2011\xkas-dll\xkas-dll.vcxproj", "{E92BB39D-D84D-4429-84DF-85100FBC89DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "patch-applier", "patch-applier\patch-applier.csproj", "{DE81334E-AECC-41C1-AC54-C71ED38205BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +56,14 @@ Global
 		{E92BB39D-D84D-4429-84DF-85100FBC89DF}.Release|Any CPU.Build.0 = Debug|Win32
 		{E92BB39D-D84D-4429-84DF-85100FBC89DF}.Release|x86.ActiveCfg = Release|Win32
 		{E92BB39D-D84D-4429-84DF-85100FBC89DF}.Release|x86.Build.0 = Release|Win32
+		{DE81334E-AECC-41C1-AC54-C71ED38205BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE81334E-AECC-41C1-AC54-C71ED38205BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE81334E-AECC-41C1-AC54-C71ED38205BC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DE81334E-AECC-41C1-AC54-C71ED38205BC}.Debug|x86.Build.0 = Debug|Any CPU
+		{DE81334E-AECC-41C1-AC54-C71ED38205BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE81334E-AECC-41C1-AC54-C71ED38205BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE81334E-AECC-41C1-AC54-C71ED38205BC}.Release|x86.ActiveCfg = Release|Any CPU
+		{DE81334E-AECC-41C1-AC54-C71ED38205BC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
