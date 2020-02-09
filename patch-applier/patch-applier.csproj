@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4A4D2F94-E543-4351-B70E-C22AB70BA38A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ips_patch_manager</RootNamespace>
-    <AssemblyName>ips-patch-manager</AssemblyName>
+    <ProjectGuid>{DE81334E-AECC-41C1-AC54-C71ED38205BC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>patch_applier</RootNamespace>
+    <AssemblyName>patch-applier</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -36,7 +34,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,25 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="PatchApplier.cs" />
+    <Compile Include="Patchers\AsmPatcher.cs" />
+    <Compile Include="Patchers\IPatcher.cs" />
+    <Compile Include="Patchers\IpsPatcher.cs" />
+    <Compile Include="Patchers\PatcherFactory.cs" />
+    <Compile Include="PatchFileDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="LibIPS.NET\LibIPS.NET\LibIPS.NET.csproj">
+    <ProjectReference Include="..\LibIPS.NET\LibIPS.NET\LibIPS.NET.csproj">
       <Project>{b997eab5-fd05-4b98-9663-c9fe2d822150}</Project>
       <Name>LibIPS.NET</Name>
     </ProjectReference>
-    <ProjectReference Include="patch-applier\patch-applier.csproj">
-      <Project>{DE81334E-AECC-41C1-AC54-C71ED38205BC}</Project>
-      <Name>patch-applier</Name>
-    </ProjectReference>
-    <ProjectReference Include="xkas-2011\cskas\cskas.csproj">
+    <ProjectReference Include="..\xkas-2011\cskas\cskas.csproj">
       <Project>{e93a5e4c-2fab-4395-bb15-70d7c99ef449}</Project>
       <Name>cskas</Name>
     </ProjectReference>
