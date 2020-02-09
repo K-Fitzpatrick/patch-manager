@@ -21,6 +21,13 @@
             "update": false
         },
         {
+            "name": "HUD Hack",
+            "url": "http://old.metroidconstruction.com/ASM/BlackFalconHUDHack2.5.zip",
+            "zipPatchInfo": {
+                "fileName": "HUD2.5.IPS"
+            }
+        },
+        {
             "name": "New Beams",
             "url": "http://old.metroidconstruction.com/IPS/GrimeBeamGFX.IPS"
         },

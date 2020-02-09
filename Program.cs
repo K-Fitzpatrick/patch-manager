@@ -1,12 +1,19 @@
 ﻿using ips_patch_manager.Patchers;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Web.Script.Serialization;
 
 namespace ips_patch_manager
 {
+    public class ZipPatchInfo
+    {
+        public string fileName;
+    }
+
     public class Patch
     {
         public string name;
@@ -14,6 +21,7 @@ namespace ips_patch_manager
         public string location;
         public string filetype = "ips";
         public bool? update;
+        public ZipPatchInfo zipPatchInfo;
     }
 
     public class PatchFile
@@ -79,25 +87,42 @@ namespace ips_patch_manager
                                 client.DownloadFile(patch.url, tempPatchLocation);
                             }
                         }
-                        else if(File.Exists(lockPatchLocation))
-                        {
-                            File.Copy(lockPatchLocation, tempPatchLocation);
-                        }
-                        else if(!File.Exists(lockPatchLocation))
-                        {
-                            throw new System.Exception($"No Location or URL specified for '{patch.name}', and patch does not already exist in lock directory");
-                        }
-                    }
-                    else
-                    {
-                        if(File.Exists(lockPatchLocation))
-                        {
-                            File.Copy(lockPatchLocation, tempPatchLocation);
-                        }
                         else if(!File.Exists(lockPatchLocation))
                         {
                             throw new System.Exception($"Patch '{patch.name}' does not already exist in lock directory, and `update` is `false`");
                         }
+
+                        if(patch.zipPatchInfo != null)
+                        {
+                            // Yes, I know.
+                            // I plan on cleaning this up later
+                            string tempZipLocation = Path.Combine(tempDirectoryPath, $"{patch.name}.zip");
+                            File.Move(tempPatchLocation, tempZipLocation);
+
+                            using(var zip = ZipFile.OpenRead(tempZipLocation))
+                            {
+                                var patchFileEntry = zip.Entries
+                                    .SingleOrDefault(entry => String.Equals(entry.Name, patch.zipPatchInfo.fileName, StringComparison.OrdinalIgnoreCase));
+
+                                if(patchFileEntry == null)
+                                {
+                                    throw new System.Exception($"File '{patch.zipPatchInfo.fileName}' does not exist in zip file '{lockPatchLocation}'");
+                                }
+
+                                patchFileEntry.ExtractToFile(tempPatchLocation, true);
+                            }
+
+                            File.Delete(tempZipLocation);
+                        }
+                    }
+                    else
+                    {
+                        if(!File.Exists(lockPatchLocation))
+                        {
+                            throw new System.Exception($"Told not to update for '{patch.name}', and patch does not already exist in lock directory");
+                        }
+
+                        File.Copy(lockPatchLocation, tempPatchLocation);
                     }
 
                     patchPaths.Add(lockPatchLocation);
@@ -117,6 +142,7 @@ namespace ips_patch_manager
             catch
             {
                 Directory.Delete(tempDirectoryPath, true);
+
                 throw;
             }
             return patchPaths;
