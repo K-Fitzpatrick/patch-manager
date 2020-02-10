@@ -120,15 +120,19 @@ namespace patch_applier
             {
                 using(FileStream sourceStream = File.Open(baseRomLocation, FileMode.Open, FileAccess.Read))
                 {
-                    sourceStream.CopyTo(targetStream);
+                    Patch(patchers, sourceStream, targetStream);
                 }
-
-                foreach(var patcher in patchers)
-                {
-                    patcher.Patch(targetStream);
-                }
-
                 File.WriteAllBytes(outputRomLocation, targetStream.ToArray());
+            }
+        }
+
+        public static void Patch(List<IPatcher> patchers, Stream baseFile, Stream outputFile)
+        {
+            baseFile.CopyTo(outputFile);
+
+            foreach(var patcher in patchers)
+            {
+                patcher.Patch(outputFile);
             }
         }
     }
