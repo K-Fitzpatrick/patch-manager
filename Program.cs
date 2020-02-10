@@ -18,7 +18,8 @@ namespace ips_patch_manager
 
             List<string> patchPaths = PatchApplier.LockAllPatches(patchFile);
 
-            var patchers = patchPaths.Select(path => PatcherFactory.CreatePatcher(path));
+            var patchers = patchPaths.Select(path => PatcherFactory.CreatePatcher(path)).ToList();
+            PatchApplier.Patch(patchers, patchFile.baseRomLocation, patchFile.outputRomLocation);
         }
     }
 }
