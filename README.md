@@ -1,3 +1,5 @@
+![Nuget](https://img.shields.io/nuget/v/patch-applier)
+
 # Patch Manager
 1. A program to apply IPS and Assembly Code patches to a base file in a specific order.
 1. A C# library/NuGet package to do the above on the fly from within other C# projects
