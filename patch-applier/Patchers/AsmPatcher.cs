@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using AsarCLR;
+using System.IO;
 
 namespace ips_patch_manager.Patchers
 {
@@ -13,28 +14,23 @@ namespace ips_patch_manager.Patchers
 
         public void Patch(Stream targetStream)
         {
-            // This is all a big workaround for the fact that xkas has to take a file pointer
+            targetStream.Position = 0;
+            var bytes = new byte[targetStream.Length];
+            targetStream.Read(bytes, 0, (int)targetStream.Length);
 
-            string tempFilePath = Path.GetTempFileName();
-            using(FileStream fileStream = new FileStream(tempFilePath, FileMode.Open, FileAccess.Write))
+            if(!Asar.init())
+            {
+                throw new System.Exception("Asar didn't initialize for some reason");
+            }
+            Asar.patch(PatchPath, ref bytes);
+            Asar.close();
+
+            using(var resultStream = new MemoryStream(bytes))
             {
                 targetStream.Seek(0, SeekOrigin.Begin);
-                targetStream.CopyTo(fileStream);
+                resultStream.CopyTo(targetStream);
+                targetStream.SetLength(resultStream.Length);
             }
-
-            string tempOutputLocation = Path.GetTempFileName();
-
-            xkas.cskas.Assemble(PatchPath, tempFilePath, tempOutputLocation, true);
-
-            using(FileStream outputStream = new FileStream(tempOutputLocation, FileMode.Open, FileAccess.Read))
-            {
-                targetStream.Seek(0, SeekOrigin.Begin);
-                outputStream.CopyTo(targetStream);
-                targetStream.SetLength(outputStream.Length);
-            }
-
-            File.Delete(tempFilePath);
-            File.Delete(tempOutputLocation);
         }
     }
 }

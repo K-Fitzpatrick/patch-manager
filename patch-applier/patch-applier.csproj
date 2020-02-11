@@ -51,6 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\asar-dll\asar-dll.csproj">
+      <Project>{faa077c1-541d-497f-b6a0-8a08adb8f52d}</Project>
+      <Name>asar-dll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibIPS.NET\LibIPS.NET\LibIPS.NET.csproj">
       <Project>{b997eab5-fd05-4b98-9663-c9fe2d822150}</Project>
       <Name>LibIPS.NET</Name>
