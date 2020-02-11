@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace ips_patch_manager.Patchers
+namespace patch_manager.Patchers
 {
     public static class PatcherFactory
     {

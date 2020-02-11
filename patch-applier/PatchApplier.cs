@@ -1,4 +1,4 @@
-﻿using ips_patch_manager.Patchers;
+﻿using patch_manager.Patchers;
 using patch_applier.PatchFileDescription;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿using CodeIsle.LibIpsNet;
 using System.IO;
 
-namespace ips_patch_manager.Patchers
+namespace patch_manager.Patchers
 {
     public class IpsPatcher : IPatcher
     {

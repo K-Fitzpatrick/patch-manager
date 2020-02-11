@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using patch_applier;
 using System.Linq;
 using System.IO;
-using ips_patch_manager.Patchers;
+using patch_manager.Patchers;
 
 namespace patch_applier_tests.PatchApplierTests
 {
