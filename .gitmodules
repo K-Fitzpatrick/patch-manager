@@ -4,3 +4,6 @@
 [submodule "xkas-2011"]
 	path = xkas-2011
 	url = https://github.com/K-Fitzpatrick/xkas-2011
+[submodule "asar"]
+	path = asar
+	url = https://github.com/RPGHacker/asar
