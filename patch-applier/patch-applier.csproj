@@ -59,10 +59,6 @@
       <Project>{b997eab5-fd05-4b98-9663-c9fe2d822150}</Project>
       <Name>LibIPS.NET</Name>
     </ProjectReference>
-    <ProjectReference Include="..\xkas-2011\cskas\cskas.csproj">
-      <Project>{e93a5e4c-2fab-4395-bb15-70d7c99ef449}</Project>
-      <Name>cskas</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
