@@ -12,6 +12,14 @@ namespace ips_patch_manager.Patchers
             PatchPath = patchPath;
         }
 
+        void HandleAsarFailure(string msg)
+        {
+            System.Exception e = new System.Exception(msg);
+            e.Data.Add("AsarWarnings", Asar.getwarnings());
+            e.Data.Add("AsarErrors", Asar.geterrors());
+            throw e;
+        }
+
         public void Patch(Stream targetStream)
         {
             targetStream.Position = 0;
@@ -20,9 +28,12 @@ namespace ips_patch_manager.Patchers
 
             if(!Asar.init())
             {
-                throw new System.Exception("Asar didn't initialize for some reason");
+                HandleAsarFailure("Asar failed to initialize");
             }
-            Asar.patch(PatchPath, ref bytes);
+            if(!Asar.patch(PatchPath, ref bytes))
+            {
+                HandleAsarFailure("Asar failed to patch");
+            }
             Asar.close();
 
             using(var resultStream = new MemoryStream(bytes))
