@@ -13,6 +13,12 @@
         <copyright>Copyright 2020</copyright>
     </metadata>
     <files>
-        <file src="bin\Debug\*.dll" target="lib\net461" />
+        <!-- Set targets to xkas is copied to output -->
+        <file src="patch-applier.targets" target="build" />
+        <file src="bin\Debug\xkas.dll" target="build" />
+
+        <!-- Drag along other library files -->
+        <file src="bin\Debug\LibIPS.NET.dll" target="lib\net461" />
+        <file src="bin\Debug\cskas.dll" target="lib\net461" />
     </files>
 </package>
