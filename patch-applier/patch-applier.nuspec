@@ -12,4 +12,7 @@
         <!-- <iconUrl>http://icon_url_here_or_delete_this_line/</iconUrl> -->
         <copyright>Copyright 2020</copyright>
     </metadata>
+    <files>
+        <file src="bin\Debug\*.dll" target="lib\net461" />
+    </files>
 </package>
