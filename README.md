@@ -1,4 +1,4 @@
-![Nuget](https://img.shields.io/nuget/v/patch-applier)
+[![Nuget](https://img.shields.io/nuget/v/patch-applier)](https://www.nuget.org/packages/patch-applier/)
 
 # Patch Manager
 1. A program to apply IPS and Assembly Code patches to a base file in a specific order.
