@@ -2,15 +2,24 @@
 
 namespace patch_manager.Patchers
 {
+    /// <summary>
+    /// Applies a .asm (Assembly) patch.
+    /// </summary>
     public class AsmPatcher : IPatcher
     {
         private string PatchPath;
 
+        /// <summary>
+        /// </summary>
+        /// <param name="patchPath"></param>
         public AsmPatcher(string patchPath)
         {
             PatchPath = patchPath;
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="targetStream"></param>
         public void Patch(Stream targetStream)
         {
             // This is all a big workaround for the fact that xkas has to take a file pointer
