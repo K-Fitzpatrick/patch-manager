@@ -16,7 +16,7 @@ namespace patch_manager
             var serializer = new JavaScriptSerializer();
             PatchFile patchFile = serializer.Deserialize<PatchFile>(text);
 
-            List<string> patchPaths = PatchApplier.LockAllPatches(patchFile);
+            List<string> patchPaths = PatchApplier.LockAllPatches(patchFile.patches, patchFile.patchfileLockDirectory);
 
             var patchers = patchPaths.Select(path => PatcherFactory.CreatePatcher(path)).ToList();
             PatchApplier.Patch(patchers, patchFile.baseRomLocation, patchFile.outputRomLocation);

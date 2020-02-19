@@ -11,7 +11,7 @@ namespace patch_applier
 {
     public class PatchApplier
     {
-        public static List<string> LockAllPatches(PatchFile patchFile)
+        public static List<string> LockAllPatches(List<Patch> patches, string patchfileLockDirectory)
         {
             List<string> patchPaths = new List<string>();
             string tempDirectoryPath = Path.Combine(Path.GetTempPath(), "patches.lock");
@@ -22,20 +22,20 @@ namespace patch_applier
                     Directory.Delete(tempDirectoryPath, true);
                 var tempDirectory = Directory.CreateDirectory(tempDirectoryPath);
 
-                var lockDirectory = Directory.CreateDirectory(patchFile.patchfileLockDirectory);
+                var lockDirectory = Directory.CreateDirectory(patchfileLockDirectory);
                 string lockDirectoryPath = lockDirectory.FullName;
 
-                if(patchFile.patches.Any(patch => patch.name == null))
+                if(patches.Any(patch => patch.name == null))
                 {
                     throw new System.Exception("No name found on patch");
                 }
 
-                if(patchFile.patches.GroupBy(patch => patch.name).Where(group => group.Count() > 1).Any())
+                if(patches.GroupBy(patch => patch.name).Where(group => group.Count() > 1).Any())
                 {
                     throw new System.Exception("Duplicate names found");
                 }
 
-                foreach(var patch in patchFile.patches)
+                foreach(var patch in patches)
                 {
                     string lockPatchLocation = Path.Combine(lockDirectoryPath, $"{patch.name}.{patch.filetype}");
                     string tempPatchLocation = Path.Combine(tempDirectoryPath, $"{patch.name}.{patch.filetype}");
@@ -94,9 +94,9 @@ namespace patch_applier
                     patchPaths.Add(lockPatchLocation);
                 }
 
-                if(Directory.Exists(patchFile.patchfileLockDirectory))
-                    Directory.Delete(patchFile.patchfileLockDirectory, true);
-                lockDirectory = Directory.CreateDirectory(patchFile.patchfileLockDirectory);
+                if(Directory.Exists(patchfileLockDirectory))
+                    Directory.Delete(patchfileLockDirectory, true);
+                lockDirectory = Directory.CreateDirectory(patchfileLockDirectory);
 
                 foreach(FileInfo file in tempDirectory.GetFiles())
                 {
