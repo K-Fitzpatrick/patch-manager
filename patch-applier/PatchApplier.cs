@@ -9,7 +9,7 @@ using System.Net;
 
 namespace patch_applier
 {
-    public class PatchApplier
+    public static class PatchApplier
     {
         public static List<string> LockAllPatches(List<Patch> patches, string patchfileLockDirectory)
         {
