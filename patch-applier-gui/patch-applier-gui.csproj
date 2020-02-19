@@ -78,5 +78,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\patch-applier\patch-applier.csproj">
+      <Project>{de81334e-aecc-41c1-ac54-c71ed38205bc}</Project>
+      <Name>patch-applier</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
