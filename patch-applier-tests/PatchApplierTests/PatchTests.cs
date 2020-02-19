@@ -14,7 +14,6 @@ namespace patch_applier_tests.PatchApplierTests
     {
         readonly string CHANGE_1 = "1.IPS";
         readonly string CHANGE_2 = "2.IPS";
-        readonly string CHANGE_3 = "3.IPS";
 
         readonly string TEST_PATCH_DIR = "TestPatches";
         readonly string BASE_FILE = "base-file.smc";
