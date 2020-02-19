@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "patch-applier", "patch-appl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "patch-applier-tests", "patch-applier-tests\patch-applier-tests.csproj", "{55F66C43-3BFF-4B22-9978-3461FB896118}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "patch-applier-gui", "patch-applier-gui\patch-applier-gui.csproj", "{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,18 @@ Global
 		{55F66C43-3BFF-4B22-9978-3461FB896118}.Release|x64.Build.0 = Release|Any CPU
 		{55F66C43-3BFF-4B22-9978-3461FB896118}.Release|x86.ActiveCfg = Release|Any CPU
 		{55F66C43-3BFF-4B22-9978-3461FB896118}.Release|x86.Build.0 = Release|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Debug|x64.Build.0 = Debug|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Debug|x86.Build.0 = Debug|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Release|x64.ActiveCfg = Release|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Release|x64.Build.0 = Release|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Release|x86.ActiveCfg = Release|Any CPU
+		{E2A4DE2D-9FB9-4141-81B0-E83B0B265E51}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
