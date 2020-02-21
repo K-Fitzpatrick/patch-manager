@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.bOpenFileDialog = new System.Windows.Forms.Button();
-            this.tbPatchFilePath = new System.Windows.Forms.TextBox();
             this.bPatch = new System.Windows.Forms.Button();
             this.folderBrowserDialogPatchFile = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialogPatchFile = new System.Windows.Forms.OpenFileDialog();
             this.bOpenDirectory = new System.Windows.Forms.Button();
+            this.tbPatchFilePath = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // bOpenFileDialog
@@ -46,16 +46,6 @@
             this.bOpenFileDialog.Text = "Browse...";
             this.bOpenFileDialog.UseVisualStyleBackColor = true;
             this.bOpenFileDialog.Click += new System.EventHandler(this.bOpenFileDialog_Click);
-            // 
-            // tbPatchFilePath
-            // 
-            this.tbPatchFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPatchFilePath.Location = new System.Drawing.Point(12, 12);
-            this.tbPatchFilePath.Name = "tbPatchFilePath";
-            this.tbPatchFilePath.Size = new System.Drawing.Size(278, 22);
-            this.tbPatchFilePath.TabIndex = 1;
-            this.tbPatchFilePath.Text = ".\\patchfile.json";
             // 
             // bPatch
             // 
@@ -83,6 +73,17 @@
             this.bOpenDirectory.UseVisualStyleBackColor = true;
             this.bOpenDirectory.Click += new System.EventHandler(this.bOpenDirectory_Click);
             // 
+            // tbPatchFilePath
+            // 
+            this.tbPatchFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPatchFilePath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::patch_applier_gui.Properties.Settings.Default, "patchFileSelection", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbPatchFilePath.Location = new System.Drawing.Point(12, 12);
+            this.tbPatchFilePath.Name = "tbPatchFilePath";
+            this.tbPatchFilePath.Size = new System.Drawing.Size(278, 22);
+            this.tbPatchFilePath.TabIndex = 1;
+            this.tbPatchFilePath.Text = global::patch_applier_gui.Properties.Settings.Default.patchFileSelection;
+            // 
             // PatchManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -95,6 +96,7 @@
             this.MinimumSize = new System.Drawing.Size(320, 125);
             this.Name = "PatchManagerForm";
             this.Text = "Apply Patches";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PatchManagerForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

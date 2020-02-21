@@ -92,5 +92,11 @@ namespace patch_applier_gui
                 return;
             }
         }
+
+        private void PatchManagerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Save off application settings like patchfile selection
+            Properties.Settings.Default.Save();
+        }
     }
 }
