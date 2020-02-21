@@ -4,6 +4,7 @@ using patch_manager.Patchers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web.Script.Serialization;
@@ -75,6 +76,21 @@ namespace patch_applier_gui
 
             var patchers = patchPaths.Select(path => PatcherFactory.CreatePatcher(path)).ToList();
             PatchApplier.Patch(patchers, patchFile.baseRomLocation, patchFile.outputRomLocation);
+        }
+
+        private void bOpenDirectory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string patchFilePath = tbPatchFilePath.Text;
+                string directory = Path.GetDirectoryName(patchFilePath);
+                Process.Start(directory);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Unexpected error");
+                return;
+            }
         }
     }
 }

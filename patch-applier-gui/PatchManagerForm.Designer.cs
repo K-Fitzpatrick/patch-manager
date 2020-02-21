@@ -33,14 +33,15 @@
             this.bPatch = new System.Windows.Forms.Button();
             this.folderBrowserDialogPatchFile = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialogPatchFile = new System.Windows.Forms.OpenFileDialog();
+            this.bOpenDirectory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bOpenFileDialog
             // 
             this.bOpenFileDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bOpenFileDialog.Location = new System.Drawing.Point(134, 44);
+            this.bOpenFileDialog.Location = new System.Drawing.Point(53, 40);
             this.bOpenFileDialog.Name = "bOpenFileDialog";
-            this.bOpenFileDialog.Size = new System.Drawing.Size(75, 23);
+            this.bOpenFileDialog.Size = new System.Drawing.Size(75, 26);
             this.bOpenFileDialog.TabIndex = 0;
             this.bOpenFileDialog.Text = "Browse...";
             this.bOpenFileDialog.UseVisualStyleBackColor = true;
@@ -54,14 +55,14 @@
             this.tbPatchFilePath.Name = "tbPatchFilePath";
             this.tbPatchFilePath.Size = new System.Drawing.Size(278, 22);
             this.tbPatchFilePath.TabIndex = 1;
-            this.tbPatchFilePath.Text = "patchfile.json";
+            this.tbPatchFilePath.Text = ".\\patchfile.json";
             // 
             // bPatch
             // 
             this.bPatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bPatch.Location = new System.Drawing.Point(215, 44);
+            this.bPatch.Location = new System.Drawing.Point(134, 40);
             this.bPatch.Name = "bPatch";
-            this.bPatch.Size = new System.Drawing.Size(75, 23);
+            this.bPatch.Size = new System.Drawing.Size(75, 26);
             this.bPatch.TabIndex = 2;
             this.bPatch.Text = "Patch";
             this.bPatch.UseVisualStyleBackColor = true;
@@ -71,11 +72,23 @@
             // 
             this.openFileDialogPatchFile.FileName = "openFileDialogPatchFile";
             // 
+            // bOpenDirectory
+            // 
+            this.bOpenDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bOpenDirectory.Location = new System.Drawing.Point(215, 40);
+            this.bOpenDirectory.Name = "bOpenDirectory";
+            this.bOpenDirectory.Size = new System.Drawing.Size(75, 26);
+            this.bOpenDirectory.TabIndex = 3;
+            this.bOpenDirectory.Text = "Open";
+            this.bOpenDirectory.UseVisualStyleBackColor = true;
+            this.bOpenDirectory.Click += new System.EventHandler(this.bOpenDirectory_Click);
+            // 
             // PatchManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(302, 78);
+            this.Controls.Add(this.bOpenDirectory);
             this.Controls.Add(this.bPatch);
             this.Controls.Add(this.tbPatchFilePath);
             this.Controls.Add(this.bOpenFileDialog);
@@ -94,6 +107,7 @@
         private System.Windows.Forms.Button bPatch;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogPatchFile;
         private System.Windows.Forms.OpenFileDialog openFileDialogPatchFile;
+        private System.Windows.Forms.Button bOpenDirectory;
     }
 }
 
