@@ -45,7 +45,7 @@ namespace patch_applier_gui
                 MessageBox.Show("Please select a file");
                 return;
             }
-
+            
             if(!File.Exists(patchFilePath))
             {
                 MessageBox.Show("File not found");
@@ -54,16 +54,16 @@ namespace patch_applier_gui
 
             try
             {
-                CreateRom(patchFilePath);
+                string outputRomLocation = CreateRom(patchFilePath);
+                MessageBox.Show($"File written to '{outputRomLocation}'", "Success!");
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Unexpected error");
-                return;
             }
         }
 
-        private void CreateRom(string patchFilePath)
+        private string CreateRom(string patchFilePath)
         {
             string text = File.ReadAllText(patchFilePath);
             var serializer = new JavaScriptSerializer();
@@ -76,6 +76,8 @@ namespace patch_applier_gui
 
             var patchers = patchPaths.Select(path => PatcherFactory.CreatePatcher(path)).ToList();
             PatchApplier.Patch(patchers, patchFile.baseRomLocation, patchFile.outputRomLocation);
+
+            return Path.GetFullPath(patchFile.outputRomLocation);
         }
 
         private void bOpenDirectory_Click(object sender, EventArgs e)
