@@ -1,24 +1,23 @@
 {
-    "baseRomLocation": "../../patches/Super_Metroid_Unheadered.smc",
-    "outputRomLocation": "../../patches/output-file.smc",
+    "baseRomLocation": "./patches/Super_Metroid_Unheadered.smc",
+    "outputRomLocation": "./patches/output-file.smc",
     "patchfileLockDirectory": "../../patches.lock",
     "patches": [
         {
             "name": "change-1",
-            "location": "../../patches/1-change.ips"
+            "location": "./patches/1-change.ips"
         },
         {
             "name": "change-2",
-            "location": "../../patches/2-change.ips"
+            "location": "./patches/2-change.ips"
         },
         {
             "name": "change-3",
-            "location": "../../patches/3-change.ips"
+            "location": "./patches/3-change.ips"
         },
         {
             "name": "New Beam Items",
-            "url": "http://old.metroidconstruction.com/IPS/GrimeBeamItems.IPS",
-            "update": false
+            "url": "http://old.metroidconstruction.com/IPS/GrimeBeamItems.IPS"
         },
         {
             "name": "HUD Hack",
