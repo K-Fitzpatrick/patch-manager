@@ -98,5 +98,27 @@ namespace patch_applier_gui
             // Save off application settings like patchfile selection
             Properties.Settings.Default.Save();
         }
+
+        private void bOpenOutputDirectory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string patchFilePath = tbPatchFilePath.Text;
+                string text = File.ReadAllText(patchFilePath);
+                var serializer = new JavaScriptSerializer();
+                PatchFile patchFile = serializer.Deserialize<PatchFile>(text);
+
+                string patchFileDir = Path.GetDirectoryName(patchFilePath);
+                Directory.SetCurrentDirectory(patchFileDir);
+
+                string outputDir = Path.GetDirectoryName(patchFile.outputRomLocation);
+                Process.Start(outputDir);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Unexpected error");
+                return;
+            }
+        }
     }
 }

@@ -35,13 +35,15 @@
             this.bOpenDirectory = new System.Windows.Forms.Button();
             this.tbPatchFilePath = new System.Windows.Forms.TextBox();
             this.pButtons = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bOpenOutputDirectory = new System.Windows.Forms.Button();
             this.pButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // bOpenFileDialog
             // 
-            this.bOpenFileDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bOpenFileDialog.Location = new System.Drawing.Point(229, 7);
+            this.bOpenFileDialog.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bOpenFileDialog.Location = new System.Drawing.Point(188, 12);
             this.bOpenFileDialog.Name = "bOpenFileDialog";
             this.bOpenFileDialog.Size = new System.Drawing.Size(75, 26);
             this.bOpenFileDialog.TabIndex = 0;
@@ -51,8 +53,8 @@
             // 
             // bPatch
             // 
-            this.bPatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bPatch.Location = new System.Drawing.Point(310, 7);
+            this.bPatch.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bPatch.Location = new System.Drawing.Point(269, 12);
             this.bPatch.Name = "bPatch";
             this.bPatch.Size = new System.Drawing.Size(75, 26);
             this.bPatch.TabIndex = 2;
@@ -66,12 +68,12 @@
             // 
             // bOpenDirectory
             // 
-            this.bOpenDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bOpenDirectory.Location = new System.Drawing.Point(391, 7);
+            this.bOpenDirectory.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bOpenDirectory.Location = new System.Drawing.Point(70, 54);
             this.bOpenDirectory.Name = "bOpenDirectory";
-            this.bOpenDirectory.Size = new System.Drawing.Size(75, 26);
+            this.bOpenDirectory.Size = new System.Drawing.Size(138, 26);
             this.bOpenDirectory.TabIndex = 3;
-            this.bOpenDirectory.Text = "Open";
+            this.bOpenDirectory.Text = "Patchfile directory";
             this.bOpenDirectory.UseVisualStyleBackColor = true;
             this.bOpenDirectory.Click += new System.EventHandler(this.bOpenDirectory_Click);
             // 
@@ -89,26 +91,50 @@
             // pButtons
             // 
             this.pButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pButtons.Controls.Add(this.label1);
+            this.pButtons.Controls.Add(this.bOpenOutputDirectory);
             this.pButtons.Controls.Add(this.bPatch);
             this.pButtons.Controls.Add(this.bOpenFileDialog);
             this.pButtons.Controls.Add(this.bOpenDirectory);
-            this.pButtons.Location = new System.Drawing.Point(-108, 40);
+            this.pButtons.Location = new System.Drawing.Point(12, 39);
             this.pButtons.Name = "pButtons";
-            this.pButtons.Size = new System.Drawing.Size(469, 36);
+            this.pButtons.Size = new System.Drawing.Size(347, 91);
             this.pButtons.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Open:";
+            // 
+            // bOpenOutputDirectory
+            // 
+            this.bOpenOutputDirectory.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bOpenOutputDirectory.Location = new System.Drawing.Point(214, 54);
+            this.bOpenOutputDirectory.Name = "bOpenOutputDirectory";
+            this.bOpenOutputDirectory.Size = new System.Drawing.Size(130, 26);
+            this.bOpenOutputDirectory.TabIndex = 4;
+            this.bOpenOutputDirectory.Text = "Output directory";
+            this.bOpenOutputDirectory.UseVisualStyleBackColor = true;
+            this.bOpenOutputDirectory.Click += new System.EventHandler(this.bOpenOutputDirectory_Click);
             // 
             // PatchManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 81);
+            this.ClientSize = new System.Drawing.Size(371, 142);
             this.Controls.Add(this.pButtons);
             this.Controls.Add(this.tbPatchFilePath);
-            this.MinimumSize = new System.Drawing.Size(389, 128);
+            this.MinimumSize = new System.Drawing.Size(389, 189);
             this.Name = "PatchManagerForm";
             this.Text = "Apply Patches";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PatchManagerForm_FormClosed);
             this.pButtons.ResumeLayout(false);
+            this.pButtons.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,6 +149,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialogPatchFile;
         private System.Windows.Forms.Button bOpenDirectory;
         private System.Windows.Forms.Panel pButtons;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button bOpenOutputDirectory;
     }
 }
 
