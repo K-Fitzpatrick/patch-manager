@@ -1,4 +1,4 @@
-[![GUI](https://img.shields.io/github/v/release/K-Fitzpatrick/patch-manager)](https://github.com/K-Fitzpatrick/patch-manager/releases)
+[![GUI](https://img.shields.io/github/v/release/K-Fitzpatrick/patch-manager?sort=semver)](https://github.com/K-Fitzpatrick/patch-manager/releases)
 [![Nuget](https://img.shields.io/nuget/v/patch-applier)](https://www.nuget.org/packages/patch-applier/)
 
 # Patch Manager
@@ -23,4 +23,4 @@ This application will read the given JSON file, and download/apply patches as sp
 
 If you use relative paths, make them relative to the patchfile itself. Example: If you want the output in the same directory as the patchfile, you would say "./[file-name].smc".
 
-Released right here on GitHub: [![Release](https://img.shields.io/github/v/release/K-Fitzpatrick/patch-manager)](https://github.com/K-Fitzpatrick/patch-manager/releases)
+Released right here on GitHub: [![Release](https://img.shields.io/github/v/release/K-Fitzpatrick/patch-manager?sort=semver)](https://github.com/K-Fitzpatrick/patch-manager/releases)
